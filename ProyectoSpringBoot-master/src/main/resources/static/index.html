@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frases Aleatorias</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Frase Aleatoria</h1>
+    <p id="frase"></p>
+    <button onclick="getFrase()">Obtener otra frase</button>
+</div>
+
+<script>
+    // Función para obtener la frase aleatoria
+    function getFrase() {
+        fetch('http://localhost:8081/frase-aleatoria')
+            .then(response => response.text())  // Asegúrate de que la respuesta sea texto
+            .then(data => {
+                document.getElementById("frase").innerText = data;
+            })
+            .catch(error => console.log("Error al obtener la frase:", error));  // Maneja errores si los hay
+    }
+
+    // Llama a la función al cargar la página para mostrar una frase automáticamente
+    window.onload = getFrase;
+</script>
+</body>
+</html>
